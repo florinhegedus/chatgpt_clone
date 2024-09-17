@@ -5,8 +5,8 @@ import streamlit as st
 st.title("Vorbește cu asistentul meu virtual:")
 
 # Access the secret from environment variables
-st.secrets["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=api_key)
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-4o-mini"
