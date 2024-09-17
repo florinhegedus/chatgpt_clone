@@ -1,14 +1,12 @@
 from openai import OpenAI
 import streamlit as st
 
-st.title("ChatGPT-like clone")
+st.title("Vorbește cu asistentul meu virtual:")
 
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-4o-mini"
-
-print(st.session_state["openai_model"])
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
