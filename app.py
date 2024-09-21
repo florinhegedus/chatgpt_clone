@@ -1,11 +1,17 @@
-from openai import OpenAI
 import os
 import streamlit as st
+from openai import OpenAI
 
 st.title("Vorbește cu asistentul meu virtual:")
 
+# Check if running inside a container
+in_container = os.getenv('IN_CONTAINER', 'False')  # Default to 'False' if not found
+
 # Access the secret from environment variables
-api_key = os.getenv("OPENAI_API_KEY")
+if in_container:
+    api_key = os.getenv("OPENAI_API_KEY")
+else:
+    api_key = st.secrets["OPENAI_API_KEY"]
 client = OpenAI(api_key=api_key)
 
 if "openai_model" not in st.session_state:
